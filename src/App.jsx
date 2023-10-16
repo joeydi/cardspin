@@ -9,15 +9,15 @@ import checkr from "./assets/checkr-logo.svg";
 
 function App() {
     const cardsRef = useRef(null);
-
-    let active = false;
+    const firstRenderRef = useRef(true);
 
     useEffect(() => {
-        if (active) {
+        if (firstRenderRef.current) {
+            firstRenderRef.current = false;
+        } else {
             return;
         }
 
-        active = true;
         gsap.registerPlugin(ScrollTrigger);
 
         const pin = cardsRef.current.querySelector(".cards-pin");
